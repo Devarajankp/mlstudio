@@ -1,0 +1,4 @@
+Dictionary data: Olam English-Malayalam Dictionary dataset (https://olam.in/open/enml/), licensed under the
+Open Database License (ODbL) 1.0. Data obtained via https://github.com/kiranps/English-Malayalam-Dictionary (MIT).
+The files in this folder are a re-indexed derivative (sharded EN->ML and an inverted ML->EN index) and remain under ODbL:
+if you publicly redistribute them you must keep this attribution and share them under the same license.

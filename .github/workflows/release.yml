@@ -1,0 +1,38 @@
+name: Build Windows app & publish release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - name: Build web app
+        run: npm run build
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+      - name: Prepare desktop (fonts, engine, web copy)
+        shell: bash
+        run: |
+          npm run desktop:prepare
+          cp -r dist desktop/web
+          OWNER="${GITHUB_REPOSITORY%%/*}"; REPO="${GITHUB_REPOSITORY##*/}"
+          echo "{\"repo\":\"${GITHUB_REPOSITORY}\",\"webUrl\":\"https://${OWNER,,}.github.io/${REPO}\"}" > desktop/defaults.json
+      - name: Build installer + portable exe
+        working-directory: desktop
+        run: |
+          npm install
+          npx electron-builder --win --x64 --publish never
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            desktop/release/Malayalam-Studio-Setup-*.exe
+            desktop/release/Malayalam-Studio-Portable-*.exe

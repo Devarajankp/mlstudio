@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, 'Noto Sans Malayalam', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.font-malayalam {
+  font-family: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+}
+
+.font-malayalam-serif {
+  font-family: 'Noto Serif Malayalam', serif;
+}
+
+.font-malayalam-chilanka {
+  font-family: 'Chilanka', cursive;
+}
+
+.font-malayalam-gayathri {
+  font-family: 'Gayathri', sans-serif;
+}
+
+.font-malayalam-manjari {
+  font-family: 'Manjari', sans-serif;
+}
+
+.font-mono-tabular {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes rainbow-slide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.msx-rainbow-bar {
+  background: linear-gradient(90deg, #dc2626, #ea580c, #eab308, #16a34a, #2563eb, #9333ea, #dc2626);
+  background-size: 200% 100%;
+  animation: rainbow-slide 12s linear infinite;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}

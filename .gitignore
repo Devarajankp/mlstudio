@@ -1,0 +1,15 @@
+node_modules/
+dist/
+build/
+coverage/
+release/
+.DS_Store
+*.log
+.env*
+!.env.example
+desktop/fonts/
+desktop/web/
+desktop/engine.bundle.js
+desktop/defaults.json
+desktop/node_modules/
+desktop/release/

@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0}html,body{background:transparent;overflow:hidden;font:13px 'Segoe UI','Nirmala UI',sans-serif;user-select:none}
+#w{display:inline-block;margin:6px;max-width:330px}
+#p{display:flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:12px;background:rgba(36,42,51,.95);color:#eef1f5;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 20px rgba(0,0,0,.28)}
+#d{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:14px;color:#fff;background:#5d7488}
+.on #d{background:#5b9a7a}.off #d{background:#7b8794}.info #d{background:#6c88ad}
+#x{min-width:0}#t{font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+#s{font-size:11px;color:#aeb8c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px;margin-top:1px}#s:empty{display:none}
+</style><div id="w"><div id="p" class="info"><div id="d">മ</div><div id="x"><div id="t"></div><div id="s"></div></div></div></div>
+<script>
+const {ipcRenderer}=require('electron');
+ipcRenderer.on('osd',(_e,d)=>{const p=document.getElementById('p');p.className=d.kind;document.getElementById('t').textContent=d.title;document.getElementById('s').textContent=d.sub||'';
+ const r=document.getElementById('w').getBoundingClientRect();ipcRenderer.send('osd-size',{w:Math.ceil(r.width)+12,h:Math.ceil(r.height)+12});});
+</script>

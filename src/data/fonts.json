@@ -1,0 +1,131 @@
+[
+ {
+  "family": "Noto Sans Malayalam",
+  "label": "Noto Sans Malayalam",
+  "series": "unicode",
+  "faces": [
+   {
+    "file": "NotoSansMalayalam-Regular.woff2",
+    "weight": "100 900",
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Meera",
+  "label": "Meera",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/Meera-Regular.woff2",
+    "weight": 400,
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Rachana",
+  "label": "Rachana",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/Rachana-Regular.woff2",
+    "weight": 400,
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Karumbi",
+  "label": "Karumbi",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/Karumbi-Regular.woff2",
+    "weight": 400,
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Keraleeyam",
+  "label": "Keraleeyam",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/Keraleeyam-Regular.woff2",
+    "weight": 400,
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Dyuthi",
+  "label": "Dyuthi",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/Dyuthi-Regular.woff2",
+    "weight": 400,
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Anjali Old Lipi",
+  "label": "Anjali Old Lipi",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/AnjaliOldLipi-Regular.woff2",
+    "weight": 400,
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Uroob",
+  "label": "Uroob",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/Uroob-Regular.woff2",
+    "weight": 400,
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Anek Malayalam",
+  "label": "Anek Malayalam",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/AnekMalayalam.woff2",
+    "weight": "100 800",
+    "style": "normal"
+   }
+  ]
+ },
+ {
+  "family": "Baloo Chettan 2",
+  "label": "Baloo Chettan 2",
+  "series": "unicode",
+  "open": true,
+  "faces": [
+   {
+    "file": "open/BalooChettan2.woff2",
+    "weight": "400 800",
+    "style": "normal"
+   }
+  ]
+ }
+]

@@ -1,0 +1,166 @@
+FONT LICENSES & ATTRIBUTIONS – Malayalam Studio
+================================================
+
+Every font bundled with this project is licensed under the SIL Open Font License, Version 1.1 (OFL-1.1).
+The fonts are redistributed unmodified apart from conversion to the WOFF2 container (and, in the Windows
+installer, back to TTF/OTF) – glyphs and names are not changed. Each copy of the fonts must keep this notice.
+
+Fonts and copyright holders
+---------------------------
+* Noto Sans Malayalam, Noto Serif Malayalam, Noto Sans, Noto Serif, Noto Sans Mono
+    Copyright 2022 The Noto Project Authors (https://github.com/notofonts/malayalam)
+    Source: https://fonts.google.com/noto
+    License: SIL Open Font License 1.1
+
+* Chilanka
+    Copyright 2023 The Chilanka Project Authors (https://gitlab.com/smc/fonts/chilanka)
+    Source: https://smc.org.in/fonts
+    License: SIL Open Font License 1.1
+
+* Manjari
+    Copyright 2023 The Manjari Project Authors (https://gitlab.com/smc/fonts/manjari)
+    Source: https://smc.org.in/fonts
+    License: SIL Open Font License 1.1
+
+* Gayathri
+    Copyright 2023 The Gayathri Project Authors (https://gitlab.com/smc/fonts/gayathri)
+    Source: https://smc.org.in/fonts
+    License: SIL Open Font License 1.1
+
+* Anek Malayalam
+    Copyright 2021 The Anek Project Authors (https://github.com/EkType/Anek)
+    Source: https://github.com/EkType/Anek
+    License: SIL Open Font License 1.1
+
+* Baloo Chettan 2
+    Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)
+    Source: https://fonts.google.com/specimen/Baloo+Chettan+2
+    License: SIL Open Font License 1.1
+
+* Meera
+    Digitized data copyright (c) 2007-2017 Hussain K H, Suresh P, Santhosh Thottingal, Rajeesh K Nambiar, Swathanthra Malayalam Computing (http://smc.org.in)
+    Source: https://smc.org.in/fonts  ·  https://gitlab.com/rit-fonts (RIT) · https://github.com/smc/font-installer
+    License: SIL Open Font License 1.1
+
+* Rachana
+    Digitized data copyright (c) 2004-2005 Rachana Akshara Vedi (Chitrajakumar R, Hussain KH, Gangadharan N, Vijayakumaran Nair, Subash Kuraiakose), (c)  2006-2016 Hussain K H, Suresh P, Santhosh Thottingal, Rajeesh K Nambiar, Swathanthra Malayalam Computing (http://smc.org.in)
+    Source: https://smc.org.in/fonts  ·  https://gitlab.com/rit-fonts (RIT) · https://github.com/smc/font-installer
+    License: SIL Open Font License 1.1
+
+* Karumbi
+    Digitized data copyright (c) 2005-2016 Kevin & Siji (c) 2016 Santhosh Thottingal (c) 2015-2016 Swathanthra Malayalam Computing(http://smc.org.in) with Reserved Font Name Karumbi.
+    Source: https://smc.org.in/fonts  ·  https://gitlab.com/rit-fonts (RIT) · https://github.com/smc/font-installer
+    License: SIL Open Font License 1.1
+
+* Keraleeyam
+    Digitized data copyright (c) 2015-2016 by Hussain KH, Kavya Manohar, Rajeesh K Nambiar, Santhosh Thottingal, Swathanthra Malayalam Computing (http://smc.org.in)
+    Source: https://smc.org.in/fonts  ·  https://gitlab.com/rit-fonts (RIT) · https://github.com/smc/font-installer
+    License: SIL Open Font License 1.1
+
+* Dyuthi
+    Digitized data copyright(c) 2007-2016 Hiran Venugopalan, Hussain K H, Swathanthra Malayalam Computing (http://smc.org.in). (c) 2007 Suresh P, (c) 2016 Santhosh Thottingal, Rajeesh K Nambiar, Kavya Manohar with Reserved Font Name Dyuthi.
+    Source: https://smc.org.in/fonts  ·  https://gitlab.com/rit-fonts (RIT) · https://github.com/smc/font-installer
+    License: SIL Open Font License 1.1
+
+* Anjali Old Lipi
+    Digitized data copyright (c) 2004,2016, Kevin & Siji,(c)2008, Hiran Venugopalan,(c)2014, Rajeesh K Nambiar, (c)2016, Santhosh Thottingal, (c)2008-2016 Swathanthra Malayalam Computing, http://smc.org.in with Reserved Font Name AnjaliOldLipi 
+    Source: https://smc.org.in/fonts  ·  https://gitlab.com/rit-fonts (RIT) · https://github.com/smc/font-installer
+    License: SIL Open Font License 1.1
+
+* Uroob
+    Digitized data copyright(c) 2015-2017 Hussain KH, Kavya Manohar, Rajeesh K Nambiar, Santhosh Thottingal, Swathanthra Malayalam Computing (http://smc.org.in)
+    Source: https://smc.org.in/fonts  ·  https://gitlab.com/rit-fonts (RIT) · https://github.com/smc/font-installer
+    License: SIL Open Font License 1.1
+
+Not bundled (deliberately): legacy proprietary DTP fonts (ML-TT, MLW-TT, MLTU0BTT, MLAH0ITT …) and fonts under
+other licences (e.g. Suruma – GPLv3 with font exception, Raghu Malayalam Sans – unclear data licence). Users may add their
+own copies through File → My fonts; they stay on the user's device.
+
+The fonts may not be sold by themselves. The Reserved Font Names of each project may not be used for modified versions.
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.

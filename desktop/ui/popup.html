@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0}html,body{background:transparent;overflow:hidden;font:13px 'Segoe UI','Nirmala UI','Noto Sans Malayalam',sans-serif;user-select:none}
+#box{display:inline-block;margin:4px;min-width:150px;max-width:260px;background:#fbfcfd;border:1px solid #d3dae3;border-radius:10px;box-shadow:0 6px 18px rgba(30,40,55,.22);overflow:hidden}
+#buf{padding:3px 10px;font-size:11px;color:#56657a;background:#eef2f6;display:flex;justify-content:space-between;gap:10px;white-space:nowrap}
+#b{overflow:hidden;text-overflow:ellipsis;max-width:170px}#st{color:#5b9a7a}
+.it{display:flex;gap:8px;padding:3px 10px;align-items:center;font-size:15px;color:#25303d;white-space:nowrap}
+.it b{font:600 10px 'Segoe UI';color:#8a97a8;width:10px}.it span{overflow:hidden;text-overflow:ellipsis}
+.it.sel{background:#e1ece6}.it.sel b{color:#3f7a5c}
+#hint{padding:2px 10px 3px;font:10px 'Segoe UI';color:#8a97a8;border-top:1px solid #e8edf2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+</style><div id="box"><div id="buf"><span id="b"></span><i id="st"></i></div><div id="list"></div><div id="hint">Space accept · ↑↓ choose · 1-9 pick · Esc English</div></div>
+<script>
+const {ipcRenderer}=require('electron');
+ipcRenderer.on('cands',(_e,d)=>{
+  document.getElementById('b').textContent=d.buf;
+  document.getElementById('st').textContent=d.online?'● online':'';
+  document.getElementById('list').innerHTML=d.items.map((t,i)=>'<div class="it'+(i===d.sel?' sel':'')+'"><b>'+(i<9?i+1:'')+'</b><span>'+t.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span></div>').join('');
+  const r=document.getElementById('box').getBoundingClientRect();
+  ipcRenderer.send('popup-size',{w:Math.ceil(r.width)+10,h:Math.ceil(r.height)+10});
+});
+</script>
