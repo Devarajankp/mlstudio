@@ -6,7 +6,7 @@
 ### മലയാളം സ്റ്റുഡിയോ
 
 **A Word-style Malayalam word processor — in your browser and on Windows.**
-Type in Manglish, Inscript, GIST, Typewriter or Panchari · write with Unicode **and** legacy ML-TT fonts · save to DOCX, ODT, PDF, HTML & more.
+Type in Manglish, Inscript, GIST, Typewriter or Panchari · write with 13 open-licensed Malayalam fonts · save to DOCX, ODT, PDF, HTML & more.
 
 [![Open the app](https://img.shields.io/badge/▶_Open_the_app-3f6b9e?style=for-the-badge)](https://devarajankp.github.io/mlstudio/)
 [![Download for Windows](https://img.shields.io/badge/⬇_Windows_installer-4f7d66?style=for-the-badge)](https://github.com/Devarajankp/mlstudio/releases/latest)
