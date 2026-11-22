@@ -13,3 +13,4 @@
 - Windows app: fonts installer, session restore, Scroll Lock light sync, Manglish layout with suggestion pop-up, refined tray, settings and compact overlays, update from web.
 ## 1.0.0
 - First release.
+
