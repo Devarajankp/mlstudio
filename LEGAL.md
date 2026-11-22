@@ -21,8 +21,10 @@ editor or keyboard product. Features were re-implemented from public behaviour a
    fonts (Karthika, Ambili, Revathi, Chandrika) and checked by drawing converted text in those fonts. No third-party map file
    or converter code was used. The fonts themselves are not in this repository. ML-TT and FML-TT share one layout, so one
    table serves both. Not decoded: a few rare vowel-sign ligature codes (232–238). "Unicode → Manglish" (`src/lib/romanize.ts`) is also original.
-   **Still to confirm:** the Manglish typing word list / phonetic rules (`src/utils/manglishTransliterator.ts`) and the
-   GIST / Typewriter / Panchari / Varityper key maps (`src/utils/keyboardLayouts.ts`) — record their sources here or rewrite them.
+   **Reviewed (1.2.3):** the Manglish word list is a short hand-written list of everyday words and the phonetic rules are generic
+   letter rules (comments corrected: they are our own, not a copy of Mozhi/Varnam). An unverifiable quote attribution was removed.
+   **Still to confirm:** the GIST / Typewriter / Panchari / Varityper key maps (`src/utils/keyboardLayouts.ts`) are public layouts,
+   but record a source for each here or drop the ones you cannot source.
 3. **Google Input Tools** – unofficial endpoint, see THIRD_PARTY_NOTICES.md. It is optional and off-switchable; do not market
    the app as "Google powered" and do not bundle Google logos.
 4. **Names and logos** – "Microsoft Word", "Word", "Google", "Windows", "Inscript", "C-DAC", "GIST" are the property of their

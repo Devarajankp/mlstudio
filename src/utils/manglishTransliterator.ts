@@ -2,7 +2,7 @@
  * Manglish (English -> Malayalam) Transliteration & Dictionary Engine
  * Combines:
  * 1. Live Google Input Tools API (`ml-t-i0-und`) for multi-candidate Malayalam transliteration suggestions
- * 2. Offline Mozhi / Varnam phonetic Malayalam transliteration engine as instant zero-latency fallback
+ * 2. Our own offline rule-based phonetic transliterator (written for this project) as an instant fallback
  * 3. English <-> Malayalam Dictionary (Olam vocabulary + live dictionary lookup)
  */
 
@@ -213,7 +213,7 @@ const CHILLU_ENDINGS: Record<string, string> = {
 };
 
 /**
- * Pure client-side Mozhi phonetic Malayalam transliterator (instant fallback)
+ * Pure client-side phonetic Malayalam transliterator written for this project (instant fallback)
  */
 export function offlinePhoneticTransliterate(word: string): string {
   const clean = word.trim();
@@ -319,7 +319,7 @@ const suggestionCache = new Map<string, string[]>();
 
 /**
  * Fetches live Malayalam transliteration candidates from Google Input Tools (`ml-t-i0-und`)
- * with instant fallback to our built-in dictionary + Mozhi phonetic engine.
+ * with instant fallback to our built-in dictionary + the offline phonetic rules.
  */
 export async function fetchManglishSuggestions(word: string): Promise<string[]> {
   const clean = word.trim();
@@ -496,10 +496,6 @@ export const MALAYALAM_QUOTES = [
   {
     quote: 'വാക്കുകൾക്ക് ലോകത്തെ മാറ്റാനുള്ള ശക്തിയുണ്ട്; നല്ല വാക്കുകൾ കൊണ്ട് ഹൃദയങ്ങളെ കീഴടക്കുക.',
     author: 'മലയാളം പഴഞ്ചൊല്ല്',
-  },
-  {
-    quote: 'അറിവ് നേടുക എന്നത് വെളിച്ചത്തിലേക്കുള്ള യാത്രയാണ്.',
-    author: 'ശ്രീനാരായണ ഗുരു',
   },
   {
     quote: 'സ്നേഹമാണ് അഖിലസാരമൂഴിയിൽ, സ്നേഹസാരമിഹ സത്യമേകമാം.',
