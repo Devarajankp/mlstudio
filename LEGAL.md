@@ -17,7 +17,9 @@ editor or keyboard product. Features were re-implemented from public behaviour a
 ## 3. Items to verify before / after going public (highest risk first)
 1. ~~ML-TT / MLW-TT fonts~~ — **resolved in 1.2.1:** all proprietary legacy fonts were removed from the repository; only OFL-1.1 fonts are bundled (`public/fonts/FONTS_LICENSE.txt`). Do not add fonts without a licence that allows redistribution, and add them to `THIRD_PARTY_NOTICES.md`.
 2. **Legacy-font conversion tables** (the converter still lets users convert text typed in legacy fonts they own) (`src/utils/malayalamConverters.ts`, `src/utils/legacy.ts`). They describe the character
-   layout of those fonts. Confirm you wrote/derived them yourself or from a permissive source; record the source here.
+   layout of those fonts. **Status (1.2.2): provenance NOT confirmed — to be replaced.** Do not describe these tables as independently
+   written until they are rebuilt from a documented, permissively licensed source (for example a font-encoding map whose licence
+   allows this use) or supplied by the user as a mapping file. Record the final source here.
 3. **Google Input Tools** – unofficial endpoint, see THIRD_PARTY_NOTICES.md. It is optional and off-switchable; do not market
    the app as "Google powered" and do not bundle Google logos.
 4. **Names and logos** – "Microsoft Word", "Word", "Google", "Windows", "Inscript", "C-DAC", "GIST" are the property of their

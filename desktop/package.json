@@ -1,6 +1,6 @@
 {
   "name": "malayalam-studio-desktop",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "productName": "Malayalam Studio",
   "description": "Malayalam Studio for Windows – editor + system-wide Malayalam typing",
   "main": "main.js",

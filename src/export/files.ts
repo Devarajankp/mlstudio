@@ -6,6 +6,7 @@ import type { PageLayout } from '../lib/page';
 import { byName } from '../lib/fonts';
 import { addCustomFont, customFontBytes, probeFont } from '../lib/customFonts';
 import { docToUnicodeText, toUnicodeJSON } from '../editor/docTools';
+import { unicodeToLegacy } from '../lib/legacy';
 import { DEFAULT_PDF, exportPdf, type PdfOptions } from './pdf';
 import { exportDocx } from './docx';
 import { exportOdt } from './odt';
@@ -25,10 +26,12 @@ export const formatInfo = (id: Format) => FORMATS.find((f) => f.id === id)!;
 
 export interface SaveOptions {
   legacy: LegacyMode;
+  /** plain-text save: Unicode, or legacy ML / FML series codes */
+  txtAs: 'unicode' | 'ml' | 'fml';
   pdf: PdfOptions;
   embedFonts: boolean;
 }
-export const DEFAULT_SAVE: SaveOptions = { legacy: 'keep', pdf: DEFAULT_PDF, embedFonts: true };
+export const DEFAULT_SAVE: SaveOptions = { legacy: 'keep', txtAs: 'unicode', pdf: DEFAULT_PDF, embedFonts: true };
 
 export interface DocState {
   editor: Editor;
@@ -62,7 +65,12 @@ export async function buildFile(fmt: Format, s: DocState, o: SaveOptions): Promi
     case 'odt':
       return exportOdt(s.editor, s.layout, s.meta, o.legacy);
     case 'txt':
-      return new Blob(['﻿' + docToUnicodeText(s.editor)], { type: `${info.mime};charset=utf-8` });
+      {
+      const uni = docToUnicodeText(s.editor);
+      const text = o.txtAs === 'unicode' || !o.txtAs ? uni : unicodeToLegacy(uni, o.txtAs);
+      // legacy codes are single-byte Latin-1 style characters; Unicode text gets a BOM
+      return new Blob([o.txtAs && o.txtAs !== 'unicode' ? text : '﻿' + text], { type: `${info.mime};charset=${o.txtAs && o.txtAs !== 'unicode' ? 'windows-1252' : 'utf-8'}` });
+    }
     case 'html': {
       const body = jsonToHtml(toUnicodeJSON(s.editor.getJSON()));
       const P = s.meta.props;

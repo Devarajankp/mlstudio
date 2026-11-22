@@ -412,6 +412,11 @@ const SaveDialog: React.FC<HostProps> = ({ close, docName, fmt, saveOpts, onSave
           <select className="msx-select" value={o.legacy} onChange={(e) => setO({ ...o, legacy: e.target.value as 'keep' | 'unicode' })}><option value="keep">Keep the legacy font</option><option value="unicode">Convert to Unicode</option></select>
         </Field>
       )}
+      {fm === 'txt' && (
+        <Field label="Save the text as" hint="Unicode works everywhere. ML / FML series save the old-style legacy character codes (for use with ML-TT / MLW-TT fonts).">
+          <select className="msx-select" value={o.txtAs} onChange={(e) => setO({ ...o, txtAs: e.target.value as 'unicode' | 'ml' | 'fml' })}><option value="unicode">Unicode series</option><option value="ml">ML series (legacy)</option><option value="fml">FML series (legacy)</option></select>
+        </Field>
+      )}
       {fm === 'mlstudio' && <label className="msx-check"><input type="checkbox" checked={o.embedFonts} onChange={(e) => setO({ ...o, embedFonts: e.target.checked })} /> Include the fonts I added (so the file opens correctly anywhere)</label>}
       {fm === 'pdf' && (
         <fieldset className="msx-fieldset">
@@ -478,7 +483,6 @@ const FontsDialog: React.FC<HostProps> = ({ close, toast }) => {
               <option value="ml">Legacy – ML-TT series (fonts you added)</option>
               <option value="fml">Legacy – MLW-TT series (fonts you added)</option>
             </select>
-            <label className="msx-check"><input type="checkbox" checked={p.handwriting} onChange={(e) => setPending(pending.map((x, k) => (k === i ? { ...x, handwriting: e.target.checked } : x)))} /> Handwriting style</label>
             <Btn title="Remove" onClick={() => setPending(pending.filter((_, k) => k !== i))}><Trash2 size={14} /></Btn>
           </div>
           <div className="msx-fontsample-line" style={{ fontFamily: 'inherit' }}>{p.probe.hasMalayalam ? 'മലയാളം ടൈപ്പിംഗ് 123' : 'The quick brown fox 123'}</div>

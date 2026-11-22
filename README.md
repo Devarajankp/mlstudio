@@ -34,7 +34,7 @@ Type in Manglish, Inscript, GIST, Typewriter or Panchari · write with 13 open-l
 | 🖼️ **Objects you can grab** | Resize, move and rotate pictures, text boxes, lines and tables; floating mini toolbar; picture transparency, brightness, contrast, blur, flip, shadow. |
 | 🎨 **Eye-friendly themes** | 7 soft colours + your own, dark mode, interface size, high contrast, reduced motion. |
 | ♿ **Accessible** | Screen-reader labels & announcements, skip link, full keyboard use, read-aloud (Ctrl+Alt+R). |
-| 📚 **Dictionary & converters** | English ⇄ Malayalam dictionary (Olam data), Unicode ⇄ legacy converter, Handwriting Studio. |
+| 📚 **Dictionary & converters** | English ⇄ Malayalam dictionary (Olam data), Unicode ⇄ legacy converter, Copy / Save as Unicode, ML or FML series. Handwriting fonts you own can be added in *My fonts*. |
 | 🔒 **Private** | No accounts, no tracking. Your documents never leave your device. |
 
 <div align="center">

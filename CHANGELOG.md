@@ -1,4 +1,9 @@
 # Changelog
+## 1.2.2 – 2026-11-22
+- Removed the separate Handwriting Studio; install your own handwriting font in *My fonts* and use it on the writing pad.
+- New: Copy as ML / Copy as FML, and Save plain text as Unicode, ML or FML series.
+- Legal review in progress: legacy ML/FML conversion tables are being replaced with independently sourced ones (see LEGAL.md).
+
 ## 1.2.1 – 2026-11-22
 - Fonts: removed all proprietary legacy fonts; bundled only SIL OFL 1.1 fonts and added Meera, Rachana, Karumbi, Keraleeyam, Dyuthi, Anjali Old Lipi, Uroob, Anek Malayalam and Baloo Chettan 2, with full attributions.
 

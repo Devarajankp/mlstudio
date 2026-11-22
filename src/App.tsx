@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { useEditor } from '@tiptap/react';
-import { BookOpen, FileText, Languages, Minus, PenLine, Plus, Save, Square, Copy, X } from 'lucide-react';
+import { BookOpen, FileText, Languages, Minus, Plus, Save, Square, Copy, X } from 'lucide-react';
 import { AppMenu } from './components/AppMenu';
 import { applyUi, loadUi, saveUi, type UiPrefs } from './lib/appearance';
 import { desktop } from './lib/app';
@@ -13,7 +13,7 @@ import { Ribbon, type RibbonActions, type ViewState } from './components/Ribbon'
 import { EditorPage } from './components/EditorPage';
 import { DictionaryPanel, type DictRequest } from './components/DictionaryPanel';
 import { ConverterStudio, type ConvertSubTab } from './components/ConverterStudio';
-import { HandwritingView } from './components/HandwritingView';
+import { unicodeToLegacy } from './lib/legacy';
 import { buildExtensions } from './editor/extensions';
 import { cleanupUnicode, docToUnicodeText, textToDoc, toUnicodeJSON } from './editor/docTools';
 import { insertPlain, selectedOrWord } from './editor/fontCommands';
@@ -26,7 +26,7 @@ import { KEYBOARD_MODES, type KeyboardMode } from './utils/keyboardLayouts';
 
 injectFontFaces();
 
-type Tab = 'editor' | 'dictionary' | 'convert' | 'handwriting';
+type Tab = 'editor' | 'dictionary' | 'convert';
 
 const SET_KEY = 'msx-settings';
 const SESSION_KEY = 'msx-session';
@@ -435,6 +435,15 @@ export default function App() {
       const n = cleanupUnicode(editor);
       toast(n ? 'Chillu & vowel clean-up complete' : 'Nothing to fix — already clean');
     },
+    copyLegacy: async (series) => {
+      const t = editor.state.selection.empty ? docToUnicodeText(editor) : selectedOrWord(editor);
+      try {
+        await navigator.clipboard.writeText(unicodeToLegacy(t, series));
+        toast(`Copied as ${series.toUpperCase()} series text`);
+      } catch {
+        toast('Copy was blocked by the browser — select the text and press Ctrl+C');
+      }
+    },
     copyUnicode: async () => {
       const t = editor.state.selection.empty ? docToUnicodeText(editor) : selectedOrWord(editor);
       try {
@@ -552,7 +561,6 @@ export default function App() {
     ['editor', 'Editor', <FileText size={15} key="e" />],
     ['dictionary', 'Dictionary', <BookOpen size={15} key="d" />],
     ['convert', 'Convert', <Languages size={15} key="c" />],
-    ['handwriting', 'Handwriting', <PenLine size={15} key="h" />],
   ];
 
   const setFromText = (t: string) => {
@@ -596,7 +604,7 @@ export default function App() {
               aria-current={tab === id ? 'page' : undefined}
               title={label}
               onClick={() => {
-                if (id === 'convert' || id === 'handwriting') setDocText(docToUnicodeText(editor));
+                if (id === 'convert') setDocText(docToUnicodeText(editor));
                 if (id === 'editor') return goEditor();
                 setTab(id);
               }}
@@ -663,11 +671,6 @@ export default function App() {
             initialSubTab={convSub}
             showToast={toast}
           />
-        </div>
-      )}
-      {tab === 'handwriting' && (
-        <div className="msx-page-tab">
-          <HandwritingView text={docText} onChangeText={(t) => { setDocText(t); editor.commands.setContent(textToDoc(t)); }} onBack={goEditor} showToast={toast} mode={mode} onMode={setMode} />
         </div>
       )}
 

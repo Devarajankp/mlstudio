@@ -39,6 +39,7 @@ export interface RibbonActions {
   openConvert(sub: ConvertSubTab): void;
   cleanup(): void;
   copyUnicode(): void;
+  copyLegacy(series: 'ml' | 'fml'): void;
   saveAs(): void;
   exportAs(fmt: Format): void;
   pickImage(): void;
@@ -626,6 +627,8 @@ export const Ribbon: React.FC<RibbonProps> = ({ editor, mode, onMode, layout, on
             <Group title="Text tools">
               <Btn big icon={<Eraser size={20} />} label="Chillu clean-up" title="Fix chillu letters and split vowel signs (selection or whole document)" onClick={actions.cleanup} />
               <Btn big icon={<Copy size={20} />} label="Copy as Unicode" title="Copy the whole document (or selection) as Unicode text" onClick={actions.copyUnicode} />
+              <Btn big icon={<Copy size={20} />} label="Copy as ML" title="Copy the whole document (or selection) as ML series (legacy) text" onClick={() => actions.copyLegacy('ml')} />
+              <Btn big icon={<Copy size={20} />} label="Copy as FML" title="Copy the whole document (or selection) as FML series (legacy) text" onClick={() => actions.copyLegacy('fml')} />
             </Group>
           </>
         )}
