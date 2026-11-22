@@ -13,3 +13,4 @@ desktop/engine.bundle.js
 desktop/defaults.json
 desktop/node_modules/
 desktop/release/
+node_modules
