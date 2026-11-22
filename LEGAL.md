@@ -47,3 +47,8 @@ C-DAC, the Government of India, Anthropic, or any font or dictionary publisher.
 ## 6. If you receive a takedown / licence complaint
 Remove the disputed asset (usually a font) from the repo *and* its history (`git filter-repo`), publish a patch release, and
 note it in `CHANGELOG.md`.
+
+## Online font sources (reviewed 1.2.4)
+- **Used:** open-licence (OFL-1.1) fonts fetched from the public Google Fonts repository on the user's request. We do not host them.
+- **Not used:** malayalamfont.com — it redistributes fonts whose authors it does not name and only says they are "free for non-commercial use as far as we know". Not safe to build into the app.
+- **Not used:** Kalkandam's legacy-font downloads (ML-TT / FML / ML-KV) — hosted without licences. Its list of open Unicode fonts (`fonts/unicode/SOURCES.md`) was used as a pointer to the official sources above; its code is MIT and was not copied.

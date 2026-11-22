@@ -52,3 +52,7 @@ Raghu Malayalam Sans (data-licence unclear). Users can add their own copies in t
 * **Google Input Tools** (`inputtools.google.com`) – optional online Manglish suggestions. It is an unofficial, undocumented
   endpoint: it may change or stop at any time and is governed by Google's Terms of Service. Turn it off in the app
   (Settings → Online suggestions); everything works offline without it.
+
+## Fonts offered by "Get fonts online" (not bundled)
+Downloaded by the user's own device from the public Google Fonts repository (github.com/google/fonts) under the SIL Open Font License 1.1:
+Chilanka, Gayathri, Manjari (Swathanthra Malayalam Computing); Anek Malayalam, Baloo Chettan 2, Arima (Ek Type); Noto Sans / Noto Serif Malayalam (Google, Noto Project).

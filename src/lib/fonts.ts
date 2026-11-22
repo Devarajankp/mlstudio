@@ -123,3 +123,22 @@ export function unregisterFontEntry(family: string): void {
   byName.delete(family.toLowerCase());
   notifyFontsChanged();
 }
+
+/* ------------------------------------------------------------------ recently used fonts */
+const RECENT_KEY = 'msx-recent-fonts';
+export function getRecentFonts(): string[] {
+  try {
+    const v = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
+    return Array.isArray(v) ? v.filter((x) => typeof x === 'string') : [];
+  } catch {
+    return [];
+  }
+}
+export function pushRecentFont(family: string): void {
+  try {
+    const list = [family, ...getRecentFonts().filter((f) => f.toLowerCase() !== family.toLowerCase())].slice(0, 6);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+  } catch {
+    /* storage unavailable: recent list just won't persist */
+  }
+}

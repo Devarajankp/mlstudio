@@ -1,4 +1,9 @@
 # Changelog
+## 1.2.4 – 2026-11-22
+- Fixed: fonts you added now show in the font list straight after the app starts (no need to open *My fonts* first).
+- Font list now starts with *Recently used*, and has **＋ Add font…** and **⬇ Get fonts online…** buttons.
+- New *Get fonts online*: one-click install of open-licence (SIL OFL) Malayalam fonts, downloaded directly from their public source.
+
 ## 1.2.3 – 2026-11-22
 - New independently written ML-TT / FML-TT (ISFOC) converter; the old converter was removed. ML and FML share one layout.
 - Unicode → Manglish is now a small original rule set.

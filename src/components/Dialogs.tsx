@@ -9,12 +9,13 @@ import { PAGE_SIZES, PX_PER_CM, type PageLayout } from '../lib/page';
 import { FONTS } from '../lib/fonts';
 import { SYMBOL_SETS, cpLabel, findSymbols } from '../lib/symbols';
 import { addCustomFont, probeFont, removeCustomFont, type Probe } from '../lib/customFonts';
+import { ONLINE_FONTS, MORE_FONT_SITES, type OnlineFont } from '../data/onlineFonts';
 import type { Series } from '../lib/legacy';
 import { FORMATS, formatInfo, type Format, type SaveOptions } from '../export/files';
 import { insertPlain } from '../editor/fontCommands';
 import { APP_NAME, APP_VERSION, BUILD_DATE, REPO_URL, RELEASES_URL, desktop, isNewer, latestVersion, IS_DESKTOP } from '../lib/app';
 
-export type DialogName = 'symbols' | 'link' | 'bookmark' | 'headerfooter' | 'pagenum' | 'datetime' | 'pagesetup' | 'paragraph' | 'properties' | 'saveas' | 'fonts' | 'picture' | 'picfmt' | 'about';
+export type DialogName = 'symbols' | 'link' | 'bookmark' | 'headerfooter' | 'pagenum' | 'datetime' | 'pagesetup' | 'paragraph' | 'properties' | 'saveas' | 'fonts' | 'onlinefonts' | 'picture' | 'picfmt' | 'about';
 
 export interface HostProps {
   dialog: DialogName | null;
@@ -505,6 +506,51 @@ const FontsDialog: React.FC<HostProps> = ({ close, toast }) => {
   );
 };
 
+/* ------------------------------------------------------------------ get fonts online */
+
+const OnlineFontsDialog: React.FC<HostProps> = ({ close, toast }) => {
+  const [state, setState] = useState<Record<string, 'busy' | 'done' | 'error'>>({});
+  const have = (family: string) => FONTS.some((f) => f.custom && f.family.toLowerCase() === family.toLowerCase());
+  const install = async (f: OnlineFont) => {
+    setState((s) => ({ ...s, [f.family]: 'busy' }));
+    try {
+      const r = await fetch(f.url);
+      if (!r.ok) throw new Error(String(r.status));
+      const bytes = await r.arrayBuffer();
+      const probe = await probeFont(bytes, f.family);
+      // keep the name from our list so it matches what the person clicked
+      await addCustomFont(bytes, { ...probe, family: f.family }, { label: f.label, series: 'unicode', handwriting: false });
+      setState((s) => ({ ...s, [f.family]: 'done' }));
+      toast(`${f.label} installed`);
+    } catch {
+      setState((s) => ({ ...s, [f.family]: 'error' }));
+      toast(`Could not download ${f.label}. Check your internet connection and try again.`);
+    }
+  };
+  return (
+    <Dialog title="Get fonts online" onClose={close} width={620} footer={<Btn primary onClick={close}>Done</Btn>}>
+      <p className="msx-hint">Free fonts under the SIL Open Font License. Pressing Install downloads the font straight from its public source to this computer; it then shows in the font list and is remembered.</p>
+      <div className="msx-list">
+        {ONLINE_FONTS.map((f) => {
+          const st = have(f.family) ? 'done' : state[f.family];
+          return (
+            <div key={f.family} className="msx-listrow">
+              <span style={{ fontFamily: st === 'done' ? `"${f.family}"` : 'inherit' }}><b>{f.label}</b> <small>{f.note} · {f.author} · {f.license}</small></span>
+              <Btn disabled={st === 'busy' || st === 'done'} onClick={() => install(f)}>{st === 'done' ? '✓ Installed' : st === 'busy' ? 'Installing…' : st === 'error' ? 'Retry' : 'Install'}</Btn>
+            </div>
+          );
+        })}
+      </div>
+      <hr />
+      <b>More free Malayalam fonts</b>
+      <p className="msx-hint">Download from these sites, then add the file with <i>＋ Add font…</i> (Home → font list). Check each font's licence before commercial use.</p>
+      <div className="msx-row">
+        {MORE_FONT_SITES.map((s) => <a key={s.url} className="msx-btn" href={s.url} target="_blank" rel="noreferrer">{s.label} ↗</a>)}
+      </div>
+    </Dialog>
+  );
+};
+
 /* ------------------------------------------------------------------ picture from web address */
 
 const PictureDialog: React.FC<HostProps> = ({ editor, close }) => {
@@ -590,6 +636,7 @@ export const Dialogs: React.FC<HostProps> = (p) => {
     case 'properties': return <PropertiesDialog {...p} />;
     case 'saveas': return <SaveDialog {...p} />;
     case 'fonts': return <FontsDialog {...p} />;
+    case 'onlinefonts': return <OnlineFontsDialog {...p} />;
     case 'picture': return <PictureDialog {...p} />;
     case 'picfmt': return <PictureFormatDialog {...p} />;
     case 'about': return <AboutDialog {...p} />;

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import type { Editor } from '@tiptap/core';
 import { useEditorState } from '@tiptap/react';
 import {
@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import type { DialogName } from './Dialogs';
 import { formatInfo, FORMATS, type Format } from '../export/files';
-import { DEFAULT_FONT, FONTS, fontByFamily, normalizeFamilyValue, type FontEntry } from '../lib/fonts';
+import { DEFAULT_FONT, FONTS, fontByFamily, fontsVersion, getRecentFonts, normalizeFamilyValue, pushRecentFont, subscribeFonts, type FontEntry } from '../lib/fonts';
 import { isLegacy, unicodeToLegacy } from '../lib/legacy';
 import { MARGIN_PRESETS, PAGE_SIZES, PX_PER_CM, type PageLayout, type PageSizeId } from '../lib/page';
 import { applyFontFamily, insertPlain } from '../editor/fontCommands';
@@ -129,15 +129,23 @@ export function usePopover() {
 
 /* ------------------------------------------------------------------ font picker */
 
-const FontPicker: React.FC<{ editor: Editor; current: string }> = ({ editor, current }) => {
+const FontPicker: React.FC<{ editor: Editor; current: string; onAdd(): void; onOnline(): void }> = ({ editor, current, onAdd, onOnline }) => {
   const p = usePopover();
   const [q, setQ] = useState('');
+  // re-render when fonts are added / finish loading (this was why saved fonts only showed after reopening My fonts)
+  const ver = useSyncExternalStore(subscribeFonts, fontsVersion);
+  const [recentTick, setRecentTick] = useState(0);
   const sample = useMemo(() => ({ unicode: SAMPLE_ML, ml: unicodeToLegacy(SAMPLE_ML, 'ml'), fml: unicodeToLegacy(SAMPLE_ML, 'fml') }), []);
   const groups = useMemo(() => {
     const m = new Map<string, FontEntry[]>();
+    if (!q) {
+      const recent = getRecentFonts().map((r) => FONTS.find((f) => f.family.toLowerCase() === r.toLowerCase())).filter((f): f is FontEntry => !!f);
+      if (recent.length) m.set('Recently used', recent);
+    }
     for (const f of FONTS) if (f.label.toLowerCase().includes(q.toLowerCase())) m.set(f.group, [...(m.get(f.group) ?? []), f]);
     return [...m.entries()];
-  }, [q]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q, ver, recentTick, p.open]);
   const label = fontByFamily(current)?.label ?? (current || DEFAULT_FONT);
 
   return (
@@ -149,18 +157,24 @@ const FontPicker: React.FC<{ editor: Editor; current: string }> = ({ editor, cur
       {p.open && (
         <div ref={p.box} className="msx-popover msx-fontlist" style={{ left: p.pos.left, top: p.pos.top }}>
           <input autoFocus className="msx-input" placeholder="Search fonts…" value={q} onChange={(e) => setQ(e.target.value)} />
+          <div className="msx-row" style={{ padding: '4px 0' }}>
+            <button type="button" className="msx-btn" onMouseDown={(e) => e.preventDefault()} onClick={() => { p.setOpen(false); onAdd(); }}>＋ Add font…</button>
+            <button type="button" className="msx-btn" onMouseDown={(e) => e.preventDefault()} onClick={() => { p.setOpen(false); onOnline(); }}>⬇ Get fonts online…</button>
+          </div>
           <div className="msx-fontscroll">
             {groups.map(([group, fonts]) => (
               <div key={group}>
                 <div className="msx-fontgroup">{group}</div>
                 {fonts.map((f) => (
                   <button
-                    key={f.family}
+                    key={group + f.family}
                     type="button"
                     className={`msx-fontrow${normalizeFamilyValue(current) === f.family ? ' is-active' : ''}`}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => {
                       applyFontFamily(editor, f.family);
+                      pushRecentFont(f.family);
+                      setRecentTick((n) => n + 1);
                       p.setOpen(false);
                     }}
                   >
@@ -302,6 +316,7 @@ export const Ribbon: React.FC<RibbonProps> = ({ editor, mode, onMode, layout, on
             <Group title="Print & fonts">
               <Btn big icon={<PrinterIcon size={22} />} label="Print" title="Print directly (Ctrl+P)" onClick={actions.print} />
               <Btn big icon={<Type size={22} />} label="My fonts" title="Add your own fonts" onClick={() => dialog('fonts')} />
+              <Btn big icon={<Type size={22} />} label="Get fonts" title="Install free open-licence Malayalam fonts from the internet" onClick={() => dialog('onlinefonts')} />
             </Group>
             <Group title="Help">
               <Btn big icon={<Info size={22} />} label="About" title="About Malayalam Studio: version, updates, shortcuts, credits (F1)" onClick={() => dialog('about')} />
@@ -321,7 +336,7 @@ export const Ribbon: React.FC<RibbonProps> = ({ editor, mode, onMode, layout, on
 
             <Group title="Font">
               <div className="msx-row">
-                <FontPicker editor={editor} current={st.fontFamily} />
+                <FontPicker editor={editor} current={st.fontFamily} onAdd={() => dialog('fonts')} onOnline={() => dialog('onlinefonts')} />
                 <input className="msx-select msx-size" list="msx-sizes" title="Font size (pt) - type any number" key={st.fontSize} defaultValue={st.fontSize || ''} placeholder="12" inputMode="decimal"
                   onKeyDown={(e) => { if (e.key === 'Enter') { const v = parseFloat((e.target as HTMLInputElement).value); if (v > 0 && v < 1000) run().setFontSize(`${v}pt`).run(); } }}
                   onChange={(e) => { const v = e.target.value; if (SIZES.includes(Number(v))) run().setFontSize(`${v}pt`).run(); }} />
