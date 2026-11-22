@@ -123,4 +123,4 @@ Malayalam Studio stands on the shoulders of a lot of generous work. *Inspired by
 * Not affiliated with Microsoft, Google, C-DAC, the Government of India or any font/dictionary publisher. All trademarks belong to their owners.
 * Contributions are welcome: [CONTRIBUTING.md](CONTRIBUTING.md) · [Code of Conduct](CODE_OF_CONDUCT.md) · [Security](SECURITY.md).
 
-<div align="center"><sub>Made with ❤️ in Ottapalam, Kerala · മലയാളത്തിനായി</sub></div>
+<div align="center"><sub>Made with ❤️ for the Malayalam-writing community · മലയാളത്തിനായി</sub></div>
