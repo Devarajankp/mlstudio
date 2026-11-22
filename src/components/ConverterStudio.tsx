@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Copy, Check, ArrowRightLeft, Sparkles } from 'lucide-react';
-import {
-  unicodeToMlFml,
-  mlFmlToUnicode,
-  malayalamToManglish,
-} from '../utils/malayalamConverters';
+import { unicodeToIsfoc, isfocToUnicode } from '../lib/isfoc';
+import { malayalamToManglish } from '../lib/romanize';
 import { correctNewChillu } from '../utils/keyboardLayouts';
 
 export type ConvertSubTab = 'ml' | 'fml' | 'to_unicode' | 'to_manglish';
@@ -41,13 +38,13 @@ export const ConverterStudio: React.FC<ConverterStudioProps> = ({
 
   const computeOutput = (): string => {
     if (subTab === 'ml') {
-      return unicodeToMlFml(sourceText, 1);
+      return unicodeToIsfoc(sourceText);
     }
     if (subTab === 'fml') {
-      return unicodeToMlFml(sourceText, 0);
+      return unicodeToIsfoc(sourceText);
     }
     if (subTab === 'to_unicode') {
-      return mlFmlToUnicode(legacyInput);
+      return isfocToUnicode(legacyInput);
     }
     return malayalamToManglish(sourceText);
   };

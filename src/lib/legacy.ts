@@ -5,7 +5,7 @@
  * (exactly like Word/PageMaker DTP files). Everything typed or pasted as Unicode inside such
  * a run is converted on the fly (see editor/legacySync.ts). These helpers are the pure part.
  */
-import { unicodeToMlFml, mlFmlToUnicode } from '../utils/malayalamConverters';
+import { unicodeToIsfoc, isfocToUnicode } from './isfoc';
 import { normalizeMalayalamKeyboardInput } from '../utils/keyboardLayouts';
 
 export type Series = 'unicode' | 'ml' | 'fml';
@@ -44,7 +44,7 @@ const FIX_SIGN_VIRAMA = new RegExp(`(${C})([\\u0D46\\u0D47\\u0D48])((?:\\u0D4D${
 const FIX_DOUBLE_SIGN = new RegExp(`([\\u0D46\\u0D47\\u0D48])([\\u0D46\\u0D47\\u0D48])(${C}(?:\\u0D4D${C})*)`, 'g'); // sign sign cluster -> sign cluster sign
 
 export function legacyToUnicode(s: string): string {
-  const u = mlFmlToUnicode(s)
+  const u = isfocToUnicode(s)
     .replace(FIX_AE, 'ോ')
     .replace(FIX_AE2, 'ൊ')
     .replace(FIX_SIGN_VIRAMA, '$1$3$2')
@@ -53,7 +53,8 @@ export function legacyToUnicode(s: string): string {
 }
 
 export function unicodeToLegacy(s: string, series: LegacySeries): string {
-  return unicodeToMlFml(canonicalizeUnicode(s), series === 'fml' ? 0 : 1);
+  void series; // ML-TT and FML-TT fonts share one layout
+  return unicodeToIsfoc(canonicalizeUnicode(s));
 }
 
 /**
